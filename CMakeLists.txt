@@ -20,6 +20,8 @@ add_executable(${PROJECT_NAME}
         include/Colors.h
         src/Colors.cpp
         src/Colors.cpp
+        include/Music.h
+        src/Music.cpp
         include/Block.h
         src/Block.cpp
         src/Blocks.cpp
@@ -28,4 +30,9 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PRIVATE
         SDL3::SDL3
         SDL3_image::SDL3_image
+)
+# Copy game assets next to the executable so they are found via SDL_GetBasePath()
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+                ${CMAKE_SOURCE_DIR}/data $<TARGET_FILE_DIR:${PROJECT_NAME}>/data
 )

@@ -3,6 +3,7 @@
 #include <vector>
 #include "Block.h"
 #include "Grid.h"
+#include "Music.h"
 
 class Game
 {
@@ -24,6 +25,7 @@ private:
     SDL_Window* window;
     SDL_Renderer* renderer;
     Grid grid;
+    Music music;
     std::vector<Block> blocks;
     Block currentBlock;
     Block nextBlock;

@@ -28,13 +28,14 @@ Game::Game()
 }
 
 Game::~Game() {
+    music.Shutdown();
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
 
 bool Game::InitializeWindow() {
-    if (!SDL_Init(SDL_INIT_VIDEO)) {
+    if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) {
         std::cerr << "Error starting SDL3: " << SDL_GetError() << std::endl;
         return false;
     }
@@ -54,6 +55,14 @@ bool Game::InitializeWindow() {
         return false;
     }
     grid = Grid(renderer);
+
+    // Music is optional: the game still runs if it can't be loaded
+    // data/ is copied next to the executable by CMake
+    const char* basePath = SDL_GetBasePath();
+    const std::string musicPath = std::string(basePath ? basePath : "") + "data/tetris-theme-melody.wav";
+    if (music.Load(musicPath.c_str())) {
+        music.Start();
+    }
     return true;
 }
 
@@ -216,6 +225,7 @@ void Game::LockBlock()
     if (!BlockFits())
     {
         gameOver = true;
+        music.Stop();
     }
     nextBlock = GetRandomBlock();
     int linesCleared = grid.ClearFullRows();
@@ -347,4 +357,5 @@ void Game::Reset() {
     mTicksCount = SDL_GetTicks();
     totalLinesCleared = 0;
     score = 0;
+    music.Start();
 }
