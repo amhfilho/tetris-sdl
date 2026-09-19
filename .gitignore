@@ -1,0 +1,19 @@
+# CMake / CLion build output
+cmake-build-*/
+build/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# IDE
+.idea/
+.vscode/
+
+# Objects / debug symbols
+*.o
+*.obj
+*.a
+*.dSYM/
+
+# macOS
+.DS_Store
