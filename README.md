@@ -1,7 +1,7 @@
 # Tetris SDL
 
 A simple Tetris clone written in C++20 with [SDL3](https://www.libsdl.org/).
-This is an attempt to convert the project from this video, [Tetris in C++ with SDL2](https://www.youtube.com/watch?v=QpdhBUYk7K0), to SDL3.
+This is an attempt to convert the project from this video: [Creating Tetris in C++ with raylib - Beginner Tutorial (OOP)](https://www.youtube.com/watch?v=wVYKG_ch4yM&t=7487s), to SDL3.
 ## Features
 
 - All seven tetrominoes (I, J, L, O, S, T, Z) with rotation
